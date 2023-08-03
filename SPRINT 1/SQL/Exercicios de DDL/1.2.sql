@@ -48,5 +48,11 @@ IdCliente int foreign key references Cliente(IdCliente),
 protocolo varchar(50)
 )
 
-select * from 
+alter table Aluguel
+add Data_Final varchar(30)
+
+alter table Aluguel 
+add Data_Inicial varchar(30)
+
+select * from Aluguel
 

@@ -45,6 +45,8 @@ values
 (1,1,'234567899'),
 (2,1,'545467876')
 
+update Aluguel
+set Data_Inicial = '04/08/2023' where IdAluguel = 3
 
 
 select * from Aluguel
