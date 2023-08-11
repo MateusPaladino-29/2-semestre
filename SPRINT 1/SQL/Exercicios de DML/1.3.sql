@@ -9,6 +9,9 @@ values('Mateus'), ('vini')
 insert into raca(descricao)
 Values('Pastor Alemao'), ('Arara-Azul')
 
+insert into raca(descricao)
+Values('Savanahh')
+
 insert into TipoPet(descricao)
 Values ('Canino'), ('Ave')
 
