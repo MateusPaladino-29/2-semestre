@@ -72,10 +72,11 @@ Create table Agendamento
 IdAgendamento int primary key identity,
 IdPaciente int foreign key references Paciente(IdPaciente),
 IdMedico int foreign key references Medico(IdMedico),
-Descricao varchar(50) not null,
 Sexo varchar(15) not null,
 Prontuario varchar(50) not null,
 Data_Consulta date not null
 
 )
 
+
+drop database Health_Clinic
