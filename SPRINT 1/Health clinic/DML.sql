@@ -7,22 +7,24 @@ insert into CLinica(NomeFantasia,RazaoSocial,CNPJ,Funcionamento)
 values ('HC','Health Clinic', '89856222647421', 'Segunda a Sabado, das 05:00 as 23:00')
 
 insert into Especialidade(TituloEspecialidade)
-values('Cardiologista')
+values('otorrinolaringologista')
 
-insert into Usuario(IdTipoUsuario,Nome,Email,Senha)
-values(3,'mikael','mikael@Gmail.com','1627')
+insert into Usuario(IdTipoUsuario,Email,Senha,Nome)
+values (2,'SucoDeFruta@gmail.com','7879','Paladino')
 
 insert into Paciente(IdUsuario,CPF,idade)
 values (1,'154879652304*15','18')
 
 insert into Medico(IdUsuario,IdEspecialidade,IdClinica,CRM)
-values (3,2,1,'48652055')
-
-insert into Agendamento(IdPaciente,IdMedico,Sexo,Prontuario,Data_Consulta)
-values(1,1,'Masculino','lucca, 18 anos, entupiu com cola o nariz', '2023-08-15')
+values (2,1,1,'48652054')
 
 insert into Comentario(IdAgendamento,Descricao,Exibe)
-values (1,'Medico muito lindo e otimo atendimento',0)
+values (3,'Medico muito lindo e otimo atendimento',1)
+
+insert into Agendamento(IdPaciente,IdMedico,Sexo,Prontuario,Data_Consulta)
+values(1,2,'Masculino','lucca, 18 anos, entupiu com cola o nariz', '2023-08-15')
+
+
 
 
 --DQL
@@ -31,20 +33,20 @@ SELECT
     Usuario.Nome AS NomePaciente,
     Paciente.CPF AS CPFPaciente,
     Agendamento.Data_Consulta,
-    CONCAT(Usuario.Nome, ' - ', Especialidade.TituloEspecialidade) AS EnderecoClinica,
+    CONCAT(Usuario.Nome, ' - ', Especialidade.TituloEspecialidade) AS EspecialidadeMedico,
     MedicoUsuario.Nome AS NomeMedico,
     Especialidade.TituloEspecialidade AS Especialidade,
     Medico.CRM AS CRMMedico,
-    Agendamento.Prontuario
-
-FROM Agendamento
-
+    Agendamento.Prontuario,
+	Comentario.Descricao
+FROM
+    Agendamento
 INNER JOIN Paciente ON Agendamento.IdPaciente = Paciente.IdPaciente
 INNER JOIN Medico ON Agendamento.IdMedico = Medico.IdMedico
 INNER JOIN Usuario ON Paciente.IdUsuario = Usuario.IdUsuario
 INNER JOIN Especialidade ON Medico.IdEspecialidade = Especialidade.IdEspecialidade
-INNER JOIN Usuario AS MedicoUsuario ON Medico.IdUsuario = MedicoUsuario.IdUsuario;
-
+INNER JOIN Usuario AS MedicoUsuario ON Medico.IdUsuario = MedicoUsuario.IdUsuario
+left JOIN Comentario on Agendamento.IdComentario = Comentario.IdComentario
 
 select * from TipoUsuario
 select * from Clinica
@@ -55,17 +57,12 @@ select * from Paciente
 select * from Medico
 select * from Agendamento
 
+ create procedure TodosAgendamentos
+ as
+ Select * from Agendamento
+ go;
 
+ exec TodosAgendamentos
 
-
-create procedure MedicoEspecialidade
-AS
-SELECT * FROM Medico 
-select * from Especialidade
-GO;
-
-exec MedicoEspecialidade
-
-
-
+ 
 
