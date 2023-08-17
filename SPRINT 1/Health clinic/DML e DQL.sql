@@ -67,5 +67,23 @@ GO;
 exec MedicoEspecialidade
 
 
+create function BuscaMedico
+(
+	@Especialidade varchar(100)
+)
+returns table
+as
+return
+(
+	select MedicoUsuario.Nome as Médico, 
+	Especialidade.TituloEspecialidade as Especialidade
+	from Especialidade
+	inner join Medico on Medico.IdEspecialidade = Especialidade.IdEspecialidade
+	inner join Usuario as MedicoUsuario on Medico.IdUsuario = MedicoUsuario.IdUsuario
+	where Especialidade.TituloEspecialidade = @Especialidade
+);
+
+select * from BuscaMedico('otorrinolaringologista')
+
 
 
