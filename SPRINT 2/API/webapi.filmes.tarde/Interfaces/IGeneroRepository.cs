@@ -30,7 +30,7 @@ namespace webapi.filmes.tarde.Interfaces
         /// buscar um objeto pelo seu id 
         /// </summary>
         /// <param name="id">id od objeto que sera buscado </param>
-        /// <returns>objeto que foi buscado</returns>
+        /// <returns>objeto que foi buscado</returns>       
         GeneroDomain BuscarPorId(int id);
 
 
