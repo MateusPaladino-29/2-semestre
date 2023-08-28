@@ -18,7 +18,7 @@ namespace webapi.filmes.tarde.Controllers
 
     /// define que o tipo de resposta da api é json
     [Produces("application/json")]
-   
+
     public class GeneroController : ControllerBase
     {
         /// <summary>
@@ -56,9 +56,9 @@ namespace webapi.filmes.tarde.Controllers
                 return BadRequest(erro.Message);
                 throw;
             }
-          
 
-         
+
+
         }
 
 
@@ -79,13 +79,13 @@ namespace webapi.filmes.tarde.Controllers
 
                 //retorna um statusCode
                 return StatusCode(201);
-                
-            }   
+
+            }
             catch (Exception erro)
             {
                 //retorna um status code BadRequest (400) e a mensagem de erro
                 return BadRequest(erro.Message);
-                
+
             }
 
 
@@ -104,10 +104,78 @@ namespace webapi.filmes.tarde.Controllers
             catch (Exception erro)
             {
                 return BadRequest(erro.Message);
-               
+
             }
-        
+
         }
+
+
+        [HttpGet("{Id}")]
+        public IActionResult Get(int Id)
+        {
+            try
+            {
+                GeneroDomain generoDomain = _GeneroRepository.BuscarPorId(Id);
+
+                if (generoDomain == null)
+                {
+                    return NotFound("O genero buscado nao foi encontrado");
+                }
+
+                return Ok(generoDomain);
+
+
+            }
+            catch (Exception erro)
+            {
+
+                return BadRequest(erro.Message);
+            }
+        }
+
+
+        [HttpPut("{Id}")]
+        public IActionResult Put(int Id, GeneroDomain genero)
+        {
+            try
+            {
+                _GeneroRepository.AtualizarIdUrl(Id, genero);
+
+                return StatusCode(201);
+            }
+
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+
+            }
+
+        }
+
+
+
+
+        [HttpPut]
+        public IActionResult PutId(int Id, GeneroDomain Genero)
+        {
+            try
+            {
+                _GeneroRepository.AtualizarIdCorpo(Genero, Id);
+
+                return StatusCode(201);
+            }
+
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+
+            }
+
+        }
+
+
+
+
 
 
 

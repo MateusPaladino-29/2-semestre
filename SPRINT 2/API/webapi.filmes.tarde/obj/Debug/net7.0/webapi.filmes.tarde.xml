@@ -65,7 +65,7 @@
             <param name="id">id od objeto que sera buscado </param>
             <returns>objeto que foi buscado</returns>       
         </member>
-        <member name="M:webapi.filmes.tarde.Interfaces.IGeneroRepository.AtualizarIdCorpo(webapi.filmes.tarde.Domains.GeneroDomain)">
+        <member name="M:webapi.filmes.tarde.Interfaces.IGeneroRepository.AtualizarIdCorpo(webapi.filmes.tarde.Domains.GeneroDomain,System.Int32)">
             <summary>
             Atualiza um genero existente passando o Id pelo corpo da requisição
             </summary>
