@@ -156,13 +156,30 @@ namespace webapi.filmes.tarde.Controllers
 
 
         [HttpPut]
-        public IActionResult PutId(int Id, GeneroDomain Genero)
+        public IActionResult PutId( GeneroDomain Genero)
         {
             try
             {
-                _GeneroRepository.AtualizarIdCorpo(Genero, Id);
+               GeneroDomain generoBuscado = _GeneroRepository.BuscarPorId(Genero.IdGenero);
 
-                return StatusCode(201);
+                if (generoBuscado != null)
+                {
+                    try
+                    {
+                        _GeneroRepository.AtualizarIdCorpo(Genero);
+
+                        return NoContent();
+                    }
+                    catch (Exception erro)
+                    {
+
+                        return BadRequest(erro.Message);
+                    }
+
+                    
+                }
+                return NotFound("Genero nao encontrado");
+
             }
 
             catch (Exception erro)

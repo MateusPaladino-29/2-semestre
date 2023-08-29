@@ -15,7 +15,7 @@ namespace webapi.filmes.tarde.Interfaces
 
         void AtualizarIdURL(int Id, FilmeDomain filme);
 
-        void Deletar(int id);
+        void Deletar(int Id);
             
     }
 }

@@ -20,28 +20,14 @@ namespace webapi.filmes.tarde.Repositories
 
         private string? stringConexao = "Data Source = NOTE05-S14; Initial Catalog = Filmes_Tarde; User Id = sa; pwd = Senai@134";
 
-        public void AtualizarIdCorpo(GeneroDomain Genero, int Id)
-        {
-            using (SqlConnection con = new SqlConnection(stringConexao))
-
-            {
-                string QueryUpdateCorpo = "UPDATE  Genero SET Nome = @NomeInserir where IdGenero = @IdGenero";
-
-                using (SqlCommand cmd = new SqlCommand(QueryUpdateCorpo, con))
-                {
-                    cmd.Parameters.AddWithValue("@NomeInserir", Genero.Nome);
-                    cmd.Parameters.AddWithValue("@IdGenero", Id);
-
-                    con.Open();
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
 
         public void AtualizarIdUrl(int Id, GeneroDomain genero)
         {
             using (SqlConnection con =  new SqlConnection(stringConexao))
             {
+                //primeiro eu preciso atualizar a tabela (Escolher o nome da tabela )
+                //segundo preciso setar a coluna que eu quero 
+                //terceiro preciso dizer ao programa que ele precisa buscar pelo id
                 string QueryUpdateUrl = "UPDATE  Genero SET Nome = @NomeInserir where IdGenero = @IdGenero";
 
                 using (SqlCommand cmd = new SqlCommand(QueryUpdateUrl, con))
@@ -82,7 +68,7 @@ namespace webapi.filmes.tarde.Repositories
                         }
                     
                 }
-            }
+            }   
 
             return generoEncontrado;
         }
@@ -192,6 +178,28 @@ namespace webapi.filmes.tarde.Repositories
 
         }
 
+        public void AtualizarIdCorpo(GeneroDomain Genero, int id)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+
+            {
+                string QueryUpdateCorpo = "UPDATE  Genero SET Nome = @NomeInserir where IdGenero = @IdGenero";
+
+                using (SqlCommand cmd = new SqlCommand(QueryUpdateCorpo, con))
+                {
+                    cmd.Parameters.AddWithValue("@NomeInserir", Genero.Nome);
+                    cmd.Parameters.AddWithValue("@IdGenero", Genero.IdGenero);
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void AtualizarIdCorpo(GeneroDomain genero)
+        {
+            throw new NotImplementedException();
+        }
     }
 
 }

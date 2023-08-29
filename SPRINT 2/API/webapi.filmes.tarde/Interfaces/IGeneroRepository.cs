@@ -54,10 +54,6 @@ namespace webapi.filmes.tarde.Interfaces
         /// </summary>
         /// <param name="Id">Id do objeto a ser deletado</param>
         void Deletar(int Id);
-
-
-
-
-
+        void AtualizarIdCorpo(GeneroDomain genero);
     }
 }
