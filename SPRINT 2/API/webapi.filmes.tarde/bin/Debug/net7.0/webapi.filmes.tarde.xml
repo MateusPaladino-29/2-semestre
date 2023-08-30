@@ -84,7 +84,7 @@
             </summary>
             <param name="Id">Id do objeto a ser deletado</param>
         </member>
-        <member name="M:webapi.filmes.tarde.Repositories.FilmeRepository.AtualizarIdCorpo(webapi.filmes.tarde.Domains.FilmeDomain)">
+        <member name="F:webapi.filmes.tarde.Repositories.FilmeRepository.stringConexao">
             <summary>
             STRING DE CONEXAO COM O BANCO DE DADOS QUE RECEBEM OS SEGUINTES PARÂMETROS
             DATA SOURCE = nome do servidor;

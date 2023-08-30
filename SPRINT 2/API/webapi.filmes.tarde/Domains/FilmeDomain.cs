@@ -12,7 +12,9 @@ namespace webapi.filmes.tarde.Domains
 
 
         //Referencia para a classe genero
+        /*
         public GeneroDomain? Genero { get; set; }
+        */
 
     }
 }

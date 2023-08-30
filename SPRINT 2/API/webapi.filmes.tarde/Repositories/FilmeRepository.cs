@@ -42,7 +42,22 @@ namespace webapi.filmes.tarde.Repositories
 
         public void AtualizarIdURL(int Id, FilmeDomain filme)
         {
-            
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string QueryUpUrl = "Update Filme set Titulo = @NovoTitulo, IdGenero = @NovoGenero where IdFilme = @IdFilme";
+
+                using (SqlCommand cmd = new SqlCommand(QueryUpUrl, con))
+                {
+                    cmd.Parameters.AddWithValue("@NovoTItulo", filme.Titulo);
+                    cmd.Parameters.AddWithValue("@NovoGenero", filme.IdGenero);
+                    cmd.Parameters.AddWithValue("@IdFilme",Id );
+
+
+                    con.Open(); 
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
         }
 
         public FilmeDomain BuscarPorId(int Id)
@@ -125,7 +140,7 @@ namespace webapi.filmes.tarde.Repositories
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 //declara a instruicao a ser criada 
-                string QuerySelectFilme = "select IdGenero,IdFilme, Titulo from Filme left join Genero on Filme.IdGenero = Genero.IdGenero";
+                string QuerySelectFilme = "select IdGenero,IdFilme, Titulo from Filme";
 
                 //abre a conexao com o banco dados
                 con.Open();
@@ -145,12 +160,12 @@ namespace webapi.filmes.tarde.Repositories
                         FilmeDomain Filme = new FilmeDomain()
                         {
                             //atribui a propriedade IdGenero o valor da primeira coluna da tabela 
-                            IdGenero = Convert.ToInt32(rdr[0]),
-
                             IdFilme = Convert.ToInt32(rdr[1]),
 
+                            IdGenero = Convert.ToInt32(rdr[0]),
+
                             //atribui a propriedade Nome em valor da Coluna Nome 
-                            Titulo = rdr["Titulo"].ToString(),
+                            Titulo = rdr["Titulo"].ToString()
                         };
 
                         //adiciona o objeto criado dentro da lista e tem que estar dentro do laço
@@ -162,7 +177,7 @@ namespace webapi.filmes.tarde.Repositories
 
             }
 
-            //Retorna a lista de genero
+            //Retorna a lista de Filme
             return ListaFilme;
         }
 

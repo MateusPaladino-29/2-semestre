@@ -5,7 +5,7 @@ using webapi.filmes.tarde.Domains;
 using webapi.filmes.tarde.Interfaces;
 using webapi.filmes.tarde.Repositories;
 
-namespace webapi.filmes.tarde.Controllers
+namespace webapi.filmes.tarde.Controllers   
 {
     /// <summary>
     /// Define que a rota de umna requisicao sera do seguinto formato dominnio/API/controller 
