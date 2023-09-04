@@ -30,7 +30,7 @@ namespace webapi.filmes.tarde.Repositories
                     cmd.Parameters.AddWithValue("@Senha", senha);
 
                     con.Open();
-
+                     
                     using (SqlDataReader rdr = cmd.ExecuteReader())
                     {
                         if (rdr.Read())
