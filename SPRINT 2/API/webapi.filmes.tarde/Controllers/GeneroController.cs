@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using webapi.filmes.tarde.Domains;
@@ -18,6 +19,7 @@ namespace webapi.filmes.tarde.Controllers
 
     /// define que o tipo de resposta da api é json
     [Produces("application/json")]
+    
 
     public class GeneroController : ControllerBase
     {
@@ -40,6 +42,7 @@ namespace webapi.filmes.tarde.Controllers
         /// <returns>lista de genero do statuscode</returns>
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public IActionResult Get()
         {
             try
@@ -69,6 +72,7 @@ namespace webapi.filmes.tarde.Controllers
         /// <returns>statusCode</returns>
         /// 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult post(GeneroDomain NovoGenero)
         {
 
@@ -93,6 +97,7 @@ namespace webapi.filmes.tarde.Controllers
 
 
         [HttpDelete("{Id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int Id)
         {
             try
@@ -111,6 +116,7 @@ namespace webapi.filmes.tarde.Controllers
 
 
         [HttpGet("{Id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Get(int Id)
         {
             try
@@ -135,6 +141,7 @@ namespace webapi.filmes.tarde.Controllers
 
 
         [HttpPut("{Id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Put(int Id, GeneroDomain genero)
         {
             try
@@ -156,6 +163,7 @@ namespace webapi.filmes.tarde.Controllers
 
 
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public IActionResult PutId( GeneroDomain Genero)
         {
             try

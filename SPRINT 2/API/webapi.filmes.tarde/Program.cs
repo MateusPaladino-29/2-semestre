@@ -15,7 +15,7 @@ builder.Services.AddAuthentication(options =>
 })
 
 //Define os parâmetros de validação do token
-.AddJwtBearer(options =>
+.AddJwtBearer("JwtBearer",options =>
 {
 options.TokenValidationParameters = new TokenValidationParameters
 {
@@ -61,6 +61,36 @@ builder.Services.AddSwaggerGen(options =>
     //Configure o Swagger para usar o arquivo XML gerado
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+
+    //Usando a autendicação no swagger
+
+    options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme() 
+    { 
+        Name = "Authorization",
+        Type = SecuritySchemeType.ApiKey,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "Values: Bearer TokenJWT"
+    
+    });
+
+    options.AddSecurityRequirement(new OpenApiSecurityRequirement
+    {
+        {
+            new OpenApiSecurityScheme
+            {
+                Reference = new OpenApiReference
+                {
+                  Type = ReferenceType.SecurityScheme,
+                  Id = "Bearer"
+                }
+                
+            },
+            new String[]{}
+        }
+    }) ;
+
 });
 
 var app = builder.Build();
