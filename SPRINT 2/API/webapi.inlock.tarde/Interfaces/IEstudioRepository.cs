@@ -5,12 +5,11 @@ namespace webapi.inlock.tarde.Interfaces
     public interface IEstudioRepository
     {
         List<Estudio> Listar();
-        Estudio BuscarPorId(Estudio estudio);
+        Estudio BuscarPorId(Guid id);
         void Cadastrar (Estudio estudio);
-        void Atualizar (Estudio estudio);
-        void Deletar (Estudio estudio);
-        List<Estudio> ListarComJogos(); 
-
-
+        void Atualizar (Guid id, Estudio estudio);
+        void Deletar (Guid id);
+        List<Estudio> ListarComJogos();
+        
     }
 }

@@ -11,24 +11,55 @@ namespace webapi.inlock.tarde.Repositories
     {
         InLockContext ctx = new InLockContext();
 
-        public void Atualizar(Estudio estudio)
+    
+
+        public void Atualizar(Guid id, Estudio estudio)
         {
-            
+            Estudio estudioBuscado = ctx.Estudios.Find(id)!;
+
+            if (estudioBuscado != null)
+            {
+                estudioBuscado.Nome = estudio.Nome;
+            }
+
+            ctx.Estudios.Update(estudioBuscado!);
+
+            ctx.SaveChanges();
         }
 
-        public Estudio BuscarPorId(Estudio estudio)
+        public Estudio BuscarPorId(Guid id)
         {
-            throw new NotImplementedException();
+            Estudio buscaEstudio = ctx.Estudios.Find(id)!;
+
+            if (buscaEstudio != null)
+            {
+                return ctx.Estudios.FirstOrDefault(x => x.IdEstudio == id)!;
+            }
+
+            return null;
+
         }
+
+        
 
         public void Cadastrar(Estudio estudio)
         {
-            throw new NotImplementedException();
+           ctx.Estudios.Add(estudio);
+            ctx.SaveChanges();
         }
 
-        public void Deletar(Estudio estudio)
+     
+
+        public void Deletar(Guid id)
         {
-            throw new NotImplementedException();
+            Estudio estudioBuscado = ctx.Estudios.Find(id)!;
+
+            if (estudioBuscado != null)
+            {
+                ctx.Estudios.Remove(estudioBuscado);
+            }
+
+            ctx.SaveChanges();
         }
 
         public List<Estudio> Listar()
