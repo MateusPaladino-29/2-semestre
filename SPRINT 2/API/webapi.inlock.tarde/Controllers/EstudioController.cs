@@ -31,5 +31,20 @@ namespace webapi.inlock.tarde.Controllers
                 return BadRequest(erro.Message);
             }    
         }
+
+        [HttpGet("ListarComJogos")]
+        public IActionResult GetWithJogos() 
+        {
+            try
+            {
+                return Ok(_estudioRepository.ListarComJogos());
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Erro ao listar");
+            }
+        
+        }
     }
 }
