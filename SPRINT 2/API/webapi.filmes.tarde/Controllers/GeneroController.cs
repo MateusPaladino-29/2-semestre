@@ -33,7 +33,7 @@ namespace webapi.filmes.tarde.Controllers
         /// </summary>
         public GeneroController()
         {
-            _GeneroRepository = new GeneroRepository();
+            _GeneroRepository = new GeneroRe    pository();
         }
 
         /// <summary>

@@ -35,10 +35,10 @@ builder.Services.AddAuthentication(options =>
         ClockSkew = TimeSpan.FromMinutes(5),
 
         //De onde esta vindo(issuer)
-        ValidIssuer = "webapi.jogos.tarde",
+        ValidIssuer = "webapi.senai.inlock",
 
         //para onde esta indo(Audience)
-        ValidAudience = "webapi.jogos.tarde"
+        ValidAudience = "webapi.senai.inlock"
 
     };
 });//paramos aqui....continuar na segunda
@@ -49,8 +49,8 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "API Filmes",
-        Description = "API para gerenciamento de fimes - Introdução a sprint 2 - Backend API",
+        Title = "API Jogos",
+        Description = "API para gerenciamento de Jogos - Introdução a sprint 2 - Backend API",
         Contact = new OpenApiContact
         {
             Name = "Mateus Paladino - Desenvolvedor",
