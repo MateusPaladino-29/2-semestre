@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace webapi.inlock_codefirst.Domains
 {
     [Table("Jogo")]
+
     public class jogoDomain
     {
+        [Key]
         public Guid IdJogo { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "Varchar(100)")]
@@ -20,7 +22,7 @@ namespace webapi.inlock_codefirst.Domains
         [Required(ErrorMessage = "Data de lançamento do jogo obrogatório!")]
         public DateTime DatLancamento { get; set; }
 
-        [Column(TypeName = "Decimal(4,2)")]
+        [Column(TypeName = "Decimal(8,2)")]
         [Required(ErrorMessage = "Preço do jogo obrogatório!")]
         public Decimal Preco { get; set; }
 

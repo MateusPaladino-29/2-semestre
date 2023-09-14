@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "BsbAhPdzG3Bm1nVOiElHKHyLepplmkQIrm4fgTpAsCE=",
+  "Source": "webapi.inlock_codefirst",
+  "BasePath": "_content/webapi.inlock_codefirst",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
