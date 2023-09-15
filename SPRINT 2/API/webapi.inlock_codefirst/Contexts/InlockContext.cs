@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using webapi.inlock_codefirst.Domains;
 
+
 namespace webapi.inlock_codefirst.Contexts
 {
     public class InlockContext : DbContext
@@ -17,11 +18,15 @@ namespace webapi.inlock_codefirst.Contexts
 
         //Define as opcoes da construção do banco
 
-        //Amanhã nao esquecer de subir para meu prorio banco
+        //Amanhã nao esquecer de subir para meu proprio banco
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("server = NOTE05-S14; Initial Catalog = Inlock_games_codeFirts_Tarde; User Id = sa; pwd = Senai@134");
+            optionsBuilder.UseSqlServer("Server=NOTE05-S14; Database=inlock_games_codefirst_tarde; User Id = sa; pwd = Senai@134; TrustServerCertificate=True;");
+            base.OnConfiguring(optionsBuilder);
         }
+
+
+
 
     }
 }

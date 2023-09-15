@@ -20,5 +20,8 @@ namespace webapi.inlock_codefirst.Domains
         [Required(ErrorMessage = "Senha é obrogatório!")]
         [StringLength(20, MinimumLength = 4, ErrorMessage = "Senha deve conter de 4 a 20 caracteres ")]
         public string? Senha { get; set; }
+
+        [ForeignKey("IdTipoUsuario")]
+        public TipoUsuarioDomain? TipoUsuario { get; set; }
     }
 }

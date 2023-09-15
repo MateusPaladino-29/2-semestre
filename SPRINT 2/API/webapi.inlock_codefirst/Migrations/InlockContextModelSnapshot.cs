@@ -62,6 +62,9 @@ namespace webapi.inlock_codefirst.Migrations
                         .IsRequired()
                         .HasColumnType("Varchar(100)");
 
+                    b.Property<Guid?>("IdTipoUsuario")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Senha")
                         .IsRequired()
                         .HasMaxLength(20)
@@ -71,6 +74,8 @@ namespace webapi.inlock_codefirst.Migrations
 
                     b.HasIndex("Email")
                         .IsUnique();
+
+                    b.HasIndex("IdTipoUsuario");
 
                     b.ToTable("Usuario");
                 });
@@ -96,13 +101,22 @@ namespace webapi.inlock_codefirst.Migrations
                         .HasColumnType("Varchar(100)");
 
                     b.Property<decimal>("Preco")
-                        .HasColumnType("Decimal(4,2)");
+                        .HasColumnType("Decimal(8,2)");
 
                     b.HasKey("IdJogo");
 
                     b.HasIndex("IdEstudio");
 
                     b.ToTable("Jogo");
+                });
+
+            modelBuilder.Entity("webapi.inlock_codefirst.Domains.UsuarioDomain", b =>
+                {
+                    b.HasOne("webapi.inlock_codefirst.Domains.TipoUsuarioDomain", "TipoUsuario")
+                        .WithMany()
+                        .HasForeignKey("IdTipoUsuario");
+
+                    b.Navigation("TipoUsuario");
                 });
 
             modelBuilder.Entity("webapi.inlock_codefirst.Domains.jogoDomain", b =>

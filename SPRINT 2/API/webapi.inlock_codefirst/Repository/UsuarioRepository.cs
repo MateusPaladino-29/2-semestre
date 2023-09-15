@@ -22,7 +22,8 @@ namespace webapi.inlock_codefirst.Repository
            
             ctx = new InlockContext();
         }
-        public UsuarioDomain BUscarUsuario(string email, string senha)
+
+        public UsuarioDomain BuscarUsuario(string email, string senha)
         {
             throw new NotImplementedException();
         }

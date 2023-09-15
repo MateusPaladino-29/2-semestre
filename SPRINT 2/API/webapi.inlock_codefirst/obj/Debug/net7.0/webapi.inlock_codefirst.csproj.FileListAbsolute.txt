@@ -74,3 +74,4 @@ C:\Users\53282675836\Desktop\2-semestre\SPRINT 2\API\webapi.inlock_codefirst\obj
 C:\Users\53282675836\Desktop\2-semestre\SPRINT 2\API\webapi.inlock_codefirst\obj\Debug\net7.0\webapi.inlock_codefirst.pdb
 C:\Users\53282675836\Desktop\2-semestre\SPRINT 2\API\webapi.inlock_codefirst\obj\Debug\net7.0\webapi.inlock_codefirst.genruntimeconfig.cache
 C:\Users\53282675836\Desktop\2-semestre\SPRINT 2\API\webapi.inlock_codefirst\obj\Debug\net7.0\ref\webapi.inlock_codefirst.dll
+C:\Users\53282675836\Desktop\2-semestre\SPRINT 2\API\webapi.inlock_codefirst\bin\Debug\net7.0\BCrypt.Net-Next.dll

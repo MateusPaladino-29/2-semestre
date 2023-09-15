@@ -36,19 +36,6 @@ namespace webapi.inlock_codefirst.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Usuario",
-                columns: table => new
-                {
-                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Email = table.Column<string>(type: "Varchar(100)", nullable: false),
-                    Senha = table.Column<string>(type: "Varchar(20)", maxLength: 20, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Jogo",
                 columns: table => new
                 {
@@ -56,7 +43,7 @@ namespace webapi.inlock_codefirst.Migrations
                     Nome = table.Column<string>(type: "Varchar(100)", nullable: false),
                     Descricao = table.Column<string>(type: "text", nullable: false),
                     DatLancamento = table.Column<DateTime>(type: "Date", nullable: false),
-                    Preco = table.Column<decimal>(type: "Decimal(4,2)", nullable: false),
+                    Preco = table.Column<decimal>(type: "Decimal(8,2)", nullable: false),
                     IdEstudio = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
@@ -70,6 +57,25 @@ namespace webapi.inlock_codefirst.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Usuario",
+                columns: table => new
+                {
+                    IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "Varchar(100)", nullable: false),
+                    Senha = table.Column<string>(type: "Varchar(20)", maxLength: 20, nullable: false),
+                    IdTipoUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Usuario", x => x.IdUsuario);
+                    table.ForeignKey(
+                        name: "FK_Usuario_TiposUsuarios_IdTipoUsuario",
+                        column: x => x.IdTipoUsuario,
+                        principalTable: "TiposUsuarios",
+                        principalColumn: "IdTipoUsuario");
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Jogo_IdEstudio",
                 table: "Jogo",
@@ -80,6 +86,11 @@ namespace webapi.inlock_codefirst.Migrations
                 table: "Usuario",
                 column: "Email",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Usuario_IdTipoUsuario",
+                table: "Usuario",
+                column: "IdTipoUsuario");
         }
 
         /// <inheritdoc />
@@ -89,13 +100,13 @@ namespace webapi.inlock_codefirst.Migrations
                 name: "Jogo");
 
             migrationBuilder.DropTable(
-                name: "TiposUsuarios");
-
-            migrationBuilder.DropTable(
                 name: "Usuario");
 
             migrationBuilder.DropTable(
                 name: "Estudio");
+
+            migrationBuilder.DropTable(
+                name: "TiposUsuarios");
         }
     }
 }
