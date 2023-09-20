@@ -19,7 +19,20 @@ namespace webapi.event_.tarde.Repository
         {
             try
             {
-                Usuario usuarioBuscado = ctx.Usuario.FirstOrDefault(u => u.Email == Email)!;
+                Usuario usuarioBuscado = ctx.Usuario
+                    .Select(u => new Usuario
+                    {
+                        IdUsuario = u.IdUsuario,
+                        Nome = u.Nome,
+                        Email = u.Email,
+                        Senha = u.Senha,
+
+                        TipoUsuario = new TipoUsuario
+                        {
+                            IdTipoUsuario = u.IdTipoUsuario,
+                            Titulo = u.TipoUsuario!.Titulo
+                        }
+                    }).FirstOrDefault(u => u.Email == Email)!;
 
                 if (usuarioBuscado != null)
                 {
@@ -65,7 +78,7 @@ namespace webapi.event_.tarde.Repository
         {
             try
             {
-                usuario.Senha = Criptografia.GerarHash(usuario.Senha);
+                usuario.Senha = Criptografia.GerarHash(usuario.Senha!);
 
                 ctx.Usuario.Add(usuario);
 
@@ -76,6 +89,11 @@ namespace webapi.event_.tarde.Repository
 
                 throw new Exception("Erro ao Cadastrar Usuario");
             }
+        }
+
+        public List<Usuario> Listar()
+        {
+            return ctx.Usuario.ToList();
         }
     }
 }

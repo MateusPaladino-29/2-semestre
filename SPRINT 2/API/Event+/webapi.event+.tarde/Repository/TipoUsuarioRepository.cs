@@ -20,7 +20,7 @@ namespace webapi.event_.tarde.Repository
 
         public TipoUsuario BuscarPorId(Guid Id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void Cadastrar(TipoUsuario TipoUsuario)
@@ -41,7 +41,7 @@ namespace webapi.event_.tarde.Repository
 
         public void Deletar(Guid Id)
         {
-            throw new NotImplementedException();
+            
         }
 
         public List<TipoUsuario> Listar()
