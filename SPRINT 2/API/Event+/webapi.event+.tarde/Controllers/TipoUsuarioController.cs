@@ -49,5 +49,20 @@ namespace webapi.event_.tarde.Controllers
                 throw new Exception("Error ao Listar");
             }
         }
+
+        [HttpDelete]
+        public IActionResult Delete(Guid id) 
+        {
+            try
+            {
+                _TipoUsuarioRepository.Deletar(id);
+
+                return NoContent();
+            }
+            catch (Exception erro)
+            {
+                return BadRequest(erro.Message);
+            }
+        }
     }
 }

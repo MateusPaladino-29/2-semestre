@@ -1,4 +1,5 @@
-﻿using webapi.event_.tarde.Context;
+﻿using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using webapi.event_.tarde.Context;
 using webapi.event_.tarde.Domains;
 using webapi.event_.tarde.Interfaces;
 
@@ -15,12 +16,33 @@ namespace webapi.event_.tarde.Repository
 
         public void Atualizar(Guid Id, TipoUsuario Usuario)
         {
-            throw new NotImplementedException();
+            TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(Id);
+
+            if (tipoUsuarioBuscado != null)
+            {
+                tipoUsuarioBuscado.Titulo = Usuario.Titulo ;
+            }
+
+            ctx.Update();
+
+            ctx.SaveChanges();
+        }
+
+        public TipoUsuario BuscarPorId(Guid Id, TipoUsuario tipoUsuario)
+        {
+            TipoUsuario TipoUsuarioBuscado = ctx.TipoUsuario.Find(Id)!;
+
+            if (TipoUsuarioBuscado != null)
+            {
+                return ctx.TipoUsuario.FirstOrDefault(x => x.IdTipoUsuario == Id)!;
+            }
+
+            return null;
         }
 
         public TipoUsuario BuscarPorId(Guid Id)
         {
-            
+            throw new NotImplementedException();
         }
 
         public void Cadastrar(TipoUsuario TipoUsuario)
@@ -41,7 +63,17 @@ namespace webapi.event_.tarde.Repository
 
         public void Deletar(Guid Id)
         {
-            
+            TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(Id);
+
+            if (tipoUsuarioBuscado != null)
+            {
+                ctx.TipoUsuario.Remove(tipoUsuarioBuscado);
+            }
+
+            ctx.SaveChanges();
+
+
+
         }
 
         public List<TipoUsuario> Listar()

@@ -79,7 +79,7 @@ namespace webapi.event_.tarde.Controllers
             {
 
                 throw new Exception("Erro na senha ou no Email");
-            }
+            }   
 
         }*/
     }
