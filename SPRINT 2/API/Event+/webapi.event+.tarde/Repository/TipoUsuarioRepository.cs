@@ -16,19 +16,20 @@ namespace webapi.event_.tarde.Repository
 
         public void Atualizar(Guid Id, TipoUsuario Usuario)
         {
-            TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(Id);
+            TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(Id)!;
 
             if (tipoUsuarioBuscado != null)
             {
                 tipoUsuarioBuscado.Titulo = Usuario.Titulo ;
             }
 
-            ctx.Update();
+            ctx.UpdateRange();
 
             ctx.SaveChanges();
         }
 
-        public TipoUsuario BuscarPorId(Guid Id, TipoUsuario tipoUsuario)
+
+        public TipoUsuario BuscarPorId(Guid Id)
         {
             TipoUsuario TipoUsuarioBuscado = ctx.TipoUsuario.Find(Id)!;
 
@@ -38,11 +39,6 @@ namespace webapi.event_.tarde.Repository
             }
 
             return null;
-        }
-
-        public TipoUsuario BuscarPorId(Guid Id)
-        {
-            throw new NotImplementedException();
         }
 
         public void Cadastrar(TipoUsuario TipoUsuario)
@@ -63,7 +59,7 @@ namespace webapi.event_.tarde.Repository
 
         public void Deletar(Guid Id)
         {
-            TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(Id);
+            TipoUsuario tipoUsuarioBuscado = ctx.TipoUsuario.Find(Id)!;
 
             if (tipoUsuarioBuscado != null)
             {

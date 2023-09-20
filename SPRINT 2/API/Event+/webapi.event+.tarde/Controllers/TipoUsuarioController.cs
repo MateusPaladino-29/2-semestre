@@ -64,5 +64,41 @@ namespace webapi.event_.tarde.Controllers
                 return BadRequest(erro.Message);
             }
         }
+
+
+        [HttpGet("{Id}")]
+        public IActionResult GetbyId(Guid id)
+        {
+            try
+            {
+                return Ok(_TipoUsuarioRepository.BuscarPorId(id));
+
+
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Erro ao Buscar");
+            }
+
+        }
+
+        [HttpPut("{id}")]
+        public IActionResult Put(Guid id, TipoUsuario tipoUsuario)
+        {
+            try
+            {
+                _TipoUsuarioRepository.Atualizar(id, tipoUsuario);
+
+                return NoContent();
+            }
+            catch (Exception)
+            {
+
+                throw new Exception("Erro ao Buscar");
+            }
+
+
+        }
     }
 }

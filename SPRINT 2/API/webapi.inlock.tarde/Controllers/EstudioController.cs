@@ -99,7 +99,7 @@ namespace webapi.inlock.tarde.Controllers
                 throw new Exception("Erro ao Buscar");
             }
 
-       }
+        }
 
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, Estudio estudio)
