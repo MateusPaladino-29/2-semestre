@@ -33,7 +33,29 @@ namespace webapi.event_.tarde.Repository
 
             if (EventoBuscado != null)
             {
-                return ctx.Evento.FirstOrDefault(e => e.IdEvento == Id)!;
+                return ctx.Evento
+
+                    .Select(u => new Evento
+                    {
+                        IdEvento = u.IdEvento,
+                        NomeEvento = u.NomeEvento,
+                        Descricao = u.Descricao,
+                        DataEvento = u.DataEvento,
+
+                        Instituicao = new Instituicao
+                        {
+                            IdInstituicao = u.IdInstituicao,
+                            NomeFantasia = u.Instituicao!.NomeFantasia
+                        },
+
+                        TipoEvento = new TipoEvento
+                        {
+                            IdTipoEvento = u.IdTipoEvento,
+                            Titulo = u.TipoEvento!.Titulo,
+
+
+                        }
+                    }).FirstOrDefault(e => e.IdEvento == Id)!;
             }
             return null!;
         }

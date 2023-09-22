@@ -46,7 +46,7 @@ namespace webapi.event_.tarde.Repository
 
                 }
 
-                return null;
+                return null!;
             }
             catch (Exception)
             {

@@ -23,7 +23,7 @@ namespace webapi.event_.tarde.Repository
                 tipoUsuarioBuscado.Titulo = Usuario.Titulo ;
             }
 
-            ctx.UpdateRange();
+            ctx.Update(Usuario);
 
             ctx.SaveChanges();
         }
@@ -38,7 +38,7 @@ namespace webapi.event_.tarde.Repository
                 return ctx.TipoUsuario.FirstOrDefault(x => x.IdTipoUsuario == Id)!;
             }
 
-            return null;
+            return null!;
         }
 
         public void Cadastrar(TipoUsuario TipoUsuario)
