@@ -19,6 +19,7 @@ namespace Webapi.healthclinic.Context
             optionsBuilder.UseSqlServer("Server=NOTE05-S14; Database=health_clinic_API; User Id = sa; pwd = Senai@134; TrustServerCertificate=True;");
             base.OnConfiguring(optionsBuilder);
         }
+        
 
 
 

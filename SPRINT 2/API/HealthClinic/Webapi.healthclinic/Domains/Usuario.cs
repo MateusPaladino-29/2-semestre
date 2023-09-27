@@ -6,6 +6,8 @@ namespace Webapi.healthclinic.Domains
     [Table(nameof(Usuario))]    
     public class Usuario
     {
+        [Key]
+
         public Guid IdUsuario { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "Varchar(100)")]

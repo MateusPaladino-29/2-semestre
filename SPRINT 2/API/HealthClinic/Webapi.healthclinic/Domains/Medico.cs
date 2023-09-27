@@ -4,11 +4,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Webapi.healthclinic.Domains
 {
+    [Table(nameof(Medico))]
     public class Medico
     {
+        [Key]
+
         public Guid IdMedico { get; set; } = Guid.NewGuid();
 
-        [Column(TypeName = "varhar(40)")]
+        [Column(TypeName = "varchar(40)")]
         [Required(ErrorMessage = "CRM é obrigatorio")]
         public string? CRM  { get; set; }
 

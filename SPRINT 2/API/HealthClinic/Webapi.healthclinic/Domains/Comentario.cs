@@ -11,7 +11,7 @@ namespace Webapi.healthclinic.Domains
         public Guid IdComentario { get; set; } = Guid.NewGuid();
 
         [Column(TypeName = "Varchar(100)")]
-        public string Descricao { get; set; }
+        public string? Descricao { get; set; }
 
         [Column(TypeName = "Bit")]
         public bool Exibe { get; set;}
