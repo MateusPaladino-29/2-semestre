@@ -33,10 +33,20 @@ namespace Webapi.healthclinic.Repository
             Clinica clinicabuscada = ctx.Clinica.Find(Id)!;
             if (clinicabuscada != null)
             {
-                ctx.Clinica.FirstOrDefault(b => b.IdClinica == Id);
+                Clinica clinicaBuscada = ctx.Clinica
+
+                   .Select(u => new Clinica
+                    {
+                        IdClinica = u.IdClinica,
+                        NomeFantasia = u.NomeFantasia,
+                        CNPJ = u.CNPJ,
+                        RazaoSocial = u.RazaoSocial,
+                        Funcionamento = u.Funcionamento,
+
+                    }).FirstOrDefault(u => u.IdClinica == Id)!;
             }
 
-            return clinicabuscada!;
+                return clinicabuscada!;
         }
 
         public void Cadastrar(Clinica cLinica)

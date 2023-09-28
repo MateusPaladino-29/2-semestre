@@ -55,7 +55,7 @@ namespace Webapi.healthclinic.Repository
 
         public void Deletar(Guid Id)
         {
-                TipoUsuario TipoBuscado = ctx.TipoUsuario.Find(Id);
+                TipoUsuario TipoBuscado = ctx.TipoUsuario.Find(Id)!;
 
             if (TipoBuscado != null)
             {

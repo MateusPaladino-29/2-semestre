@@ -2,45 +2,44 @@
 using Microsoft.AspNetCore.Mvc;
 using Webapi.healthclinic.Domains;
 using Webapi.healthclinic.Interface;
+using Webapi.healthclinic.Repository;
 
 namespace Webapi.healthclinic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class ClinicaController : ControllerBase
+    public class PacienteController : ControllerBase
     {
-        private IClinicaRepository _ClinicaRepository { get; set; }
+        private IPacienteRepository _PacienteRepository { get; set; }
 
-        public ClinicaController()
+        public PacienteController()
         {
-            _ClinicaRepository = new Repository.ClinicaRepository();
+            _PacienteRepository = new Repository.PacienteRepository();
 
         }
 
         [HttpPost]
-        public IActionResult Post(Clinica clinica)
+        public IActionResult Post(Paciente paciente)
         {
             try
             {
-                _ClinicaRepository.Cadastrar(clinica);
-
+                _PacienteRepository.Cadastrar(paciente);
                 return StatusCode(201);
             }
             catch (Exception)
             {
 
-                throw new Exception("Erro ao acessar a rota");
+                throw new Exception("Erro ao Cadastrar");
             }
         }
-
 
         [HttpGet]
         public IActionResult Get()
         {
             try
             {
-                return Ok(_ClinicaRepository.Listar());
+                return Ok(_PacienteRepository.Listar());
             }
             catch (Exception)
             {
@@ -50,27 +49,27 @@ namespace Webapi.healthclinic.Controllers
         }
 
         [HttpDelete]
-        public IActionResult Delete(Guid id)
+        public IActionResult Delete(Guid id) 
         {
             try
             {
-                _ClinicaRepository.Deletar(id);
+                _PacienteRepository.Deletar(id);
 
                 return NoContent();
             }
-            catch (Exception erro)
+            catch (Exception)
             {
-                return BadRequest(erro.Message);
+
+                throw new Exception("Ërro ao Deletar");
             }
         }
-
 
         [HttpGet("{Id}")]
         public IActionResult GetbyId(Guid id)
         {
             try
             {
-                return Ok(_ClinicaRepository.BuscarPorId(id));
+                return Ok(_PacienteRepository.BuscarPorId(id));
 
 
             }
@@ -83,11 +82,11 @@ namespace Webapi.healthclinic.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, Clinica clinica)
+        public IActionResult Put(Guid id, Paciente paciente)
         {
             try
             {
-                _ClinicaRepository.Atualizar(id, clinica);
+                _PacienteRepository.Atualizar(id, paciente);
 
                 return NoContent();
             }
@@ -97,7 +96,7 @@ namespace Webapi.healthclinic.Controllers
                 throw new Exception("Erro ao Buscar");
             }
 
-
         }
     }
+
 }

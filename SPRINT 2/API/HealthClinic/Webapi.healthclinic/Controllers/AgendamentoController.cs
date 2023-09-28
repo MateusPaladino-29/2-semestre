@@ -8,22 +8,22 @@ namespace Webapi.healthclinic.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class ClinicaController : ControllerBase
+    public class AgendamentoController : ControllerBase
     {
-        private IClinicaRepository _ClinicaRepository { get; set; }
+        private IAgendamentoRepository _AgendamentoRepository { get; set; }
 
-        public ClinicaController()
+        public AgendamentoController()
         {
-            _ClinicaRepository = new Repository.ClinicaRepository();
+            _AgendamentoRepository = new Repository.AgendamentoRepository();
 
         }
 
         [HttpPost]
-        public IActionResult Post(Clinica clinica)
+        public IActionResult Post(Agendamento agendamento)
         {
             try
             {
-                _ClinicaRepository.Cadastrar(clinica);
+                _AgendamentoRepository.(agendamento);
 
                 return StatusCode(201);
             }
@@ -40,7 +40,7 @@ namespace Webapi.healthclinic.Controllers
         {
             try
             {
-                return Ok(_ClinicaRepository.Listar());
+                return Ok(_AgendamentoRepository.Listar());
             }
             catch (Exception)
             {
@@ -54,7 +54,7 @@ namespace Webapi.healthclinic.Controllers
         {
             try
             {
-                _ClinicaRepository.Deletar(id);
+                _AgendamentoRepository.Deletar(id);
 
                 return NoContent();
             }
@@ -70,7 +70,7 @@ namespace Webapi.healthclinic.Controllers
         {
             try
             {
-                return Ok(_ClinicaRepository.BuscarPorId(id));
+                return Ok(_AgendamentoRepository.BuscarPorId(id));
 
 
             }
@@ -83,11 +83,11 @@ namespace Webapi.healthclinic.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, Clinica clinica)
+        public IActionResult Put(Guid id, TipoUsuario tipousuario)
         {
             try
             {
-                _ClinicaRepository.Atualizar(id, clinica);
+                _AgendamentoRepository.Atualizar(id, tipousuario);
 
                 return NoContent();
             }

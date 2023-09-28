@@ -7,7 +7,7 @@ namespace Webapi.healthclinic.Context
     {
         public DbSet<Paciente> Paciente { get; set; }
           public DbSet<Medico> Medico { get; set; }
-          public DbSet<Agendamento> Agendamentos { get; set; }
+          public DbSet<Agendamento> Agendamento { get; set; }
           public DbSet<Clinica> Clinica { get; set; }
           public DbSet<Comentario> Comentario { get; set; }
           public DbSet<Especialidade> Especialidade { get; set; }

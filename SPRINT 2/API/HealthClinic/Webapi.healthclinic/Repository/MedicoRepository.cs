@@ -19,7 +19,23 @@ namespace Webapi.healthclinic.Repository
             Medico MedBuscado = ctx.Medico.Find(Id)!;
             if (MedBuscado != null)
             {
-                return ctx.Medico.FirstOrDefault(b => b.IdMedico == Id)!;
+                return ctx.Medico
+                    .Select(u => new Medico
+                    {
+                        IdMedico = u.IdMedico,
+                        CRM = u.CRM,
+
+                        Usuario = new Usuario
+                        {
+                            IdUsuario = u.IdUsuario,
+                            Nome = u.Usuario.Nome
+                        },
+                        Especialidade = new Especialidade
+                        {
+                            IdEspecialidade = u.IdEspecialidade,
+                            Titulo = u.Especialidade.Titulo
+                        },
+                    }).FirstOrDefault(b => b.IdMedico == Id)!;
             }
 
             return MedBuscado!;

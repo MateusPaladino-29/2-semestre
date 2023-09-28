@@ -2,28 +2,29 @@
 using Microsoft.AspNetCore.Mvc;
 using Webapi.healthclinic.Domains;
 using Webapi.healthclinic.Interface;
+using Webapi.healthclinic.Repository;
 
 namespace Webapi.healthclinic.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-    public class ClinicaController : ControllerBase
+    public class TipoUsuarioRepository : ControllerBase
     {
-        private IClinicaRepository _ClinicaRepository { get; set; }
+        private ITipoUsuarioRepository _TipoUsuarioRepository { get; set; }
 
-        public ClinicaController()
+        public TipoUsuarioRepository()
         {
-            _ClinicaRepository = new Repository.ClinicaRepository();
+            _TipoUsuarioRepository = new Repository.TipoUsuarioRepository();
 
         }
 
         [HttpPost]
-        public IActionResult Post(Clinica clinica)
+        public IActionResult Post(TipoUsuario tipoUsuario)
         {
             try
             {
-                _ClinicaRepository.Cadastrar(clinica);
+                _TipoUsuarioRepository.Cadastrar(tipoUsuario);
 
                 return StatusCode(201);
             }
@@ -35,26 +36,26 @@ namespace Webapi.healthclinic.Controllers
         }
 
 
-        [HttpGet]
-        public IActionResult Get()
-        {
-            try
+            [HttpGet]
+            public IActionResult Get()
             {
-                return Ok(_ClinicaRepository.Listar());
-            }
-            catch (Exception)
-            {
+                try
+                {
+                    return Ok(_TipoUsuarioRepository.Listar());
+                }
+                catch (Exception)
+                {
 
-                throw new Exception("Error ao Listar");
+                    throw new Exception("Error ao Listar");
+                }
             }
-        }
 
         [HttpDelete]
         public IActionResult Delete(Guid id)
         {
             try
             {
-                _ClinicaRepository.Deletar(id);
+                _TipoUsuarioRepository.Deletar(id);
 
                 return NoContent();
             }
@@ -70,7 +71,7 @@ namespace Webapi.healthclinic.Controllers
         {
             try
             {
-                return Ok(_ClinicaRepository.BuscarPorId(id));
+                return Ok(_TipoUsuarioRepository.BuscarPorId(id));
 
 
             }
@@ -83,11 +84,11 @@ namespace Webapi.healthclinic.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, Clinica clinica)
+        public IActionResult Put(Guid id, TipoUsuario tipousuario)
         {
             try
             {
-                _ClinicaRepository.Atualizar(id, clinica);
+                _TipoUsuarioRepository.Atualizar(id, tipousuario);
 
                 return NoContent();
             }

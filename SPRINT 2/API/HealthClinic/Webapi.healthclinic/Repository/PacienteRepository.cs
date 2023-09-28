@@ -32,7 +32,21 @@ namespace Webapi.healthclinic.Repository
             Paciente Pacientebscd = ctx.Paciente.Find(Id)!;
             if (Pacientebscd != null)
             {
-               return ctx.Paciente.FirstOrDefault(b => b.IdPaciente == Id)!;
+                return ctx.Paciente
+                      .Select(u => new Paciente
+                      {
+                          IdPaciente = u.IdPaciente,
+                          CPF = u.CPF,
+                          Idade = u.Idade,
+
+                          Usuario = new Usuario
+                          {
+                              IdUsuario = u.IdUsuario,
+                              Nome = u.Usuario.Nome,
+
+                          }
+
+                      }).FirstOrDefault(b => b.IdPaciente == Id)!;
             }
 
             return Pacientebscd!;

@@ -26,9 +26,14 @@ namespace Webapi.healthclinic.Domains
         [Required(ErrorMessage = "Obrigatorio ter CNPJ")]
         public int CNPJ { get; set; }
 
-        [Column(TypeName = "varchar(100)")]
+        [Column(TypeName = "Time")]
         [Required(ErrorMessage = "Obrigatorio ter seu horario de Funcionamento")]
-        public DateTime Funcionamento { get; set; }
+        public DateTime HorarioAbertura { get; set; }
+
+        [Column(TypeName = "Time")]
+        [Required(ErrorMessage = "Obrigatorio ter seu horario de Funcionamento")]
+        public DateTime HorarioFechamento { get; set; }
+
 
     }
 }
