@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Webapi.healthclinic.Domains;
 using Webapi.healthclinic.Interface;
@@ -18,6 +19,8 @@ namespace Webapi.healthclinic.Controllers
             _UsuarioRepository = new UsuarioRepository();
 
         }
+
+        /* [Authorize("Administrador")]*/
         [HttpPost]
         public IActionResult Post(Usuario Usuario)
         {

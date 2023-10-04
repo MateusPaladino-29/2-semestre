@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Webapi.healthclinic.Domains;
 using Webapi.healthclinic.Interface;
+using Webapi.healthclinic.Repository;
 
 namespace Webapi.healthclinic.Controllers
 {
@@ -10,20 +12,21 @@ namespace Webapi.healthclinic.Controllers
     [Produces("application/json")]
     public class AgendamentoController : ControllerBase
     {
-        private IAgendamentoRepository _AgendamentoRepository { get; set; }
+        private IAgendamentoRepository _AgendamentoRepository;
 
         public AgendamentoController()
         {
-            _AgendamentoRepository = new Repository.AgendamentoRepository();
+            _AgendamentoRepository = new AgendamentoRepository();
 
         }
 
+        [Authorize("Administrador")]
         [HttpPost]
         public IActionResult Post(Agendamento agendamento)
         {
             try
             {
-                _AgendamentoRepository.(agendamento);
+                _AgendamentoRepository.Cadastrar(agendamento);
 
                 return StatusCode(201);
             }
@@ -49,6 +52,7 @@ namespace Webapi.healthclinic.Controllers
             }
         }
 
+        /* [Authorize("Administrador")]*/
         [HttpDelete]
         public IActionResult Delete(Guid id)
         {
@@ -82,12 +86,13 @@ namespace Webapi.healthclinic.Controllers
 
         }
 
+        /* [Authorize("Administrador")]*/
         [HttpPut("{id}")]
-        public IActionResult Put(Guid id, TipoUsuario tipousuario)
+        public IActionResult Put(Guid id, Agendamento agendamento)
         {
             try
             {
-                _AgendamentoRepository.Atualizar(id, tipousuario);
+                _AgendamentoRepository.Atualizar(id, agendamento);
 
                 return NoContent();
             }

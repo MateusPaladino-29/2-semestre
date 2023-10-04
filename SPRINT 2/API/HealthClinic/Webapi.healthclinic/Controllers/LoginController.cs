@@ -44,14 +44,14 @@ namespace Webapi.healthclinic.Controllers
                 {
                     //Formato da claim(tipo, valor)
                     new Claim(JwtRegisteredClaimNames.Jti, usuarioBuscado.IdUsuario.ToString()),
-                    new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email.ToString()),
-                    new Claim(ClaimTypes.Role, usuarioBuscado.IdTipoUsuario.ToString()),
+                    new Claim(JwtRegisteredClaimNames.Email, usuarioBuscado.Email!.ToString()),
+                    new Claim(ClaimTypes.Role, usuarioBuscado.TipoUsuario!.Titulo!),
                     //existe a possibilidade de criar uma claim personalizada
                     new Claim("Claim Personalizada", "Valor Personalizado")
                 };
 
                 //2 - Definir a chave de acesso ao token
-                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("healt-chave-autenticacao-webapi-dev"));
+                var key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes("health-chave-autenticacao-webapi-dev"));
 
                 //3 - Definir as credenciais do token (Header)
                 var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -60,10 +60,10 @@ namespace Webapi.healthclinic.Controllers
                 var token = new JwtSecurityToken
                     (
                         //emissor do token
-                        issuer: "webapi.healthclinic",
+                        issuer: "health.clinic-webapi",
 
                         //destinatário
-                        audience: "webapi.healthclinic",
+                        audience: "health.clinic-webapi",
 
                         //dados definidos na claim (Payload)
                         claims: claims,
@@ -75,10 +75,7 @@ namespace Webapi.healthclinic.Controllers
                         signingCredentials: creds
                     );
 
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
-                });
+                return Ok(new{token = new JwtSecurityTokenHandler().WriteToken(token)});
             }
             catch (Exception)
             {

@@ -17,9 +17,10 @@ namespace Webapi.healthclinic.Repository
             Clinica clinicabuscada = ctx.Clinica.Find(Id)!;
             if (clinicabuscada != null)
             {
-                clinica.Titulo = clinicabuscada.Titulo;
+               
                 clinica.RazaoSocial = clinicabuscada.RazaoSocial;
-                clinica.Funcionamento = clinicabuscada.Funcionamento;
+                clinica.HorarioAbertura = clinicabuscada.HorarioAbertura;
+                clinica.HorarioFechamento= clinicabuscada.HorarioFechamento;
                 clinica.NomeFantasia = clinica.NomeFantasia;
                
             }
@@ -30,6 +31,15 @@ namespace Webapi.healthclinic.Repository
 
         public Clinica BuscarPorId(Guid Id)
         {
+          /*  try
+            {
+                return ctx.Clinica.FirstOrDefault(e => e.IdClinica == Id);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }*/
             Clinica clinicabuscada = ctx.Clinica.Find(Id)!;
             if (clinicabuscada != null)
             {
@@ -41,7 +51,8 @@ namespace Webapi.healthclinic.Repository
                         NomeFantasia = u.NomeFantasia,
                         CNPJ = u.CNPJ,
                         RazaoSocial = u.RazaoSocial,
-                        Funcionamento = u.Funcionamento,
+                        HorarioAbertura = u.HorarioAbertura,
+                        HorarioFechamento= u.HorarioFechamento,
 
                     }).FirstOrDefault(u => u.IdClinica == Id)!;
             }
@@ -49,11 +60,12 @@ namespace Webapi.healthclinic.Repository
                 return clinicabuscada!;
         }
 
-        public void Cadastrar(Clinica cLinica)
+        public void Cadastrar(Clinica clinica)
         {
             try
             {
-                ctx.Clinica.Add(cLinica);
+                ctx.Clinica.Add(clinica);
+                ctx.SaveChanges();  
             }
             catch (Exception)
             {

@@ -12,6 +12,10 @@ namespace Webapi.healthclinic.Repository
         {
             ctx = new HealthContext();
         }
+
+
+     
+
         public Comentario BuscarPorId(Guid id)
         {
             Comentario comentario = ctx.Comentario.Find(id)!;

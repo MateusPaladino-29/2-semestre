@@ -1,5 +1,6 @@
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using webapi.health.clinic.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultChallengeScheme = "JwtBearer";
@@ -37,13 +38,20 @@ builder.Services.AddAuthentication(options =>
             ClockSkew = TimeSpan.FromMinutes(5),
 
             //De onde esta vindo(issuer)
-            ValidIssuer = "webapi.healthclinic",
+            ValidIssuer = "health.clinic-webapi",
 
             //para onde esta indo(Audience)
-            ValidAudience = "webapi.healclinic"
+            ValidAudience = "health.clinic-webapi"
 
         };
     });
+
+
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.Converters.Add(new TimeSpanConverter());
+});
 
 
 
@@ -94,6 +102,10 @@ builder.Services.AddSwaggerGen(options =>
     });
 
 });
+
+
+var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

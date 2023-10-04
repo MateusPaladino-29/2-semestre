@@ -12,7 +12,7 @@ namespace Webapi.healthclinic.Domains
 
         [Column(TypeName = "VARCHAR(11)")]
         [Required(ErrorMessage = "CPF obrigatório!")]
-        public int? CPF { get; set; }
+        public string? CPF { get; set; }
 
 
         [Column(TypeName = "VARCHAR(3)")]

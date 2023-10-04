@@ -4,7 +4,7 @@ namespace Webapi.healthclinic.Interface
 {
     public interface IClinicaRepository
     {
-        void Cadastrar(Clinica cLinica);
+        void Cadastrar(Clinica clinica);
         void Deletar(Guid Id);
         List<Clinica> Listar();
         Clinica BuscarPorId(Guid Id);

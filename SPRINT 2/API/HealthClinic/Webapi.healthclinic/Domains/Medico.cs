@@ -11,7 +11,7 @@ namespace Webapi.healthclinic.Domains
 
         public Guid IdMedico { get; set; } = Guid.NewGuid();
 
-        [Column(TypeName = "varchar(40)")]
+        [Column(TypeName = "char(6)")]
         [Required(ErrorMessage = "CRM é obrigatorio")]
         public string? CRM  { get; set; }
 

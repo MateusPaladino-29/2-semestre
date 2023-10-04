@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
+
+
 namespace Webapi.healthclinic.Domains
 {
     [Table(nameof(Clinica))]
@@ -17,22 +19,23 @@ namespace Webapi.healthclinic.Domains
         [Required(ErrorMessage = "Obrigatorio ter sua Razao Social")]
         public string? RazaoSocial { get; set; }
 
-        [Column(TypeName = "varchar(100)")]
-        [Required(ErrorMessage = "Obrigatorio ter sua Especialidade")]
-        public string? Titulo { get; set; }
 
 
-        [Column(TypeName = "Char(15)")]
+        [Column(TypeName = "Char(14)")]
         [Required(ErrorMessage = "Obrigatorio ter CNPJ")]
-        public int CNPJ { get; set; }
+        public string? CNPJ { get; set; }
 
         [Column(TypeName = "Time")]
         [Required(ErrorMessage = "Obrigatorio ter seu horario de Funcionamento")]
-        public DateTime HorarioAbertura { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
+        public TimeSpan? HorarioAbertura { get; set; }
 
         [Column(TypeName = "Time")]
         [Required(ErrorMessage = "Obrigatorio ter seu horario de Funcionamento")]
-        public DateTime HorarioFechamento { get; set; }
+        [DataType(DataType.Time)]
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = @"hh\:mm")]
+        public TimeSpan? HorarioFechamento { get; set; }
 
 
     }

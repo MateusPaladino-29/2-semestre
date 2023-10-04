@@ -12,7 +12,7 @@ using Webapi.healthclinic.Context;
 namespace Webapi.healthclinic.Migrations
 {
     [DbContext(typeof(HealthContext))]
-    [Migration("20230927174032_BD")]
+    [Migration("20230929180614_BD")]
     partial class BD
     {
         /// <inheritdoc />
@@ -70,21 +70,21 @@ namespace Webapi.healthclinic.Migrations
 
                     b.Property<string>("CNPJ")
                         .IsRequired()
-                        .HasColumnType("Char(15)");
+                        .HasColumnType("Char(14)");
 
-                    b.Property<string>("Funcionamento")
+                    b.Property<TimeSpan?>("HorarioAbertura")
                         .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("Time");
+
+                    b.Property<TimeSpan?>("HorarioFechamento")
+                        .IsRequired()
+                        .HasColumnType("Time");
 
                     b.Property<string>("NomeFantasia")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
                     b.Property<string>("RazaoSocial")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
-
-                    b.Property<string>("Titulo")
                         .IsRequired()
                         .HasColumnType("varchar(100)");
 
@@ -100,7 +100,6 @@ namespace Webapi.healthclinic.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Descricao")
-                        .IsRequired()
                         .HasColumnType("Varchar(100)");
 
                     b.Property<bool>("Exibe")
@@ -134,7 +133,7 @@ namespace Webapi.healthclinic.Migrations
 
                     b.Property<string>("CRM")
                         .IsRequired()
-                        .HasColumnType("varchar(40)");
+                        .HasColumnType("char(6)");
 
                     b.Property<Guid>("IdClinica")
                         .HasColumnType("uniqueidentifier");

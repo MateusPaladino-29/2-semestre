@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Webapi.healthclinic.Domains;
 using Webapi.healthclinic.Interface;
@@ -19,7 +20,7 @@ namespace Webapi.healthclinic.Controllers
 
         }
 
-        [HttpPost]
+        /* [Authorize("Administrador")]*/
         public IActionResult Post(TipoUsuario tipoUsuario)
         {
             try
@@ -50,6 +51,7 @@ namespace Webapi.healthclinic.Controllers
                 }
             }
 
+        /* [Authorize("Administrador")]*/
         [HttpDelete]
         public IActionResult Delete(Guid id)
         {
@@ -83,6 +85,7 @@ namespace Webapi.healthclinic.Controllers
 
         }
 
+        /* [Authorize("Administrador")]*/
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, TipoUsuario tipousuario)
         {

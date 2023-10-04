@@ -18,9 +18,9 @@ namespace Webapi.healthclinic.Migrations
                     IdClinica = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     NomeFantasia = table.Column<string>(type: "varchar(100)", nullable: false),
                     RazaoSocial = table.Column<string>(type: "varchar(100)", nullable: false),
-                    Titulo = table.Column<string>(type: "varchar(100)", nullable: false),
-                    CNPJ = table.Column<string>(type: "Char(15)", nullable: false),
-                    Funcionamento = table.Column<string>(type: "varchar(100)", nullable: false)
+                    CNPJ = table.Column<string>(type: "Char(14)", nullable: false),
+                    HorarioAbertura = table.Column<TimeSpan>(type: "Time", nullable: false),
+                    HorarioFechamento = table.Column<TimeSpan>(type: "Time", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -32,7 +32,7 @@ namespace Webapi.healthclinic.Migrations
                 columns: table => new
                 {
                     IdComentario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Descricao = table.Column<string>(type: "Varchar(100)", nullable: false),
+                    Descricao = table.Column<string>(type: "Varchar(100)", nullable: true),
                     Exibe = table.Column<bool>(type: "Bit", nullable: false)
                 },
                 constraints: table =>
@@ -82,7 +82,7 @@ namespace Webapi.healthclinic.Migrations
                         column: x => x.IdTipoUsuario,
                         principalTable: "TipoUsuario",
                         principalColumn: "IdTipoUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -90,7 +90,7 @@ namespace Webapi.healthclinic.Migrations
                 columns: table => new
                 {
                     IdMedico = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CRM = table.Column<string>(type: "varchar(40)", nullable: false),
+                    CRM = table.Column<string>(type: "char(6)", nullable: false),
                     IdUsuario = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdEspecialidade = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     IdClinica = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -103,19 +103,19 @@ namespace Webapi.healthclinic.Migrations
                         column: x => x.IdClinica,
                         principalTable: "Clinica",
                         principalColumn: "IdClinica",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Medico_Especialidade_IdEspecialidade",
                         column: x => x.IdEspecialidade,
                         principalTable: "Especialidade",
                         principalColumn: "IdEspecialidade",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Medico_Usuario_IdUsuario",
                         column: x => x.IdUsuario,
                         principalTable: "Usuario",
                         principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -135,7 +135,7 @@ namespace Webapi.healthclinic.Migrations
                         column: x => x.IdUsuario,
                         principalTable: "Usuario",
                         principalColumn: "IdUsuario",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(

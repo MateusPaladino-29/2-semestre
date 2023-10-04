@@ -9,5 +9,6 @@ namespace Webapi.healthclinic.Interface
         void Deletar(Guid id);
         List<Comentario> Listar();
         Comentario BuscarPorId(Guid id);
+        
     }
 }

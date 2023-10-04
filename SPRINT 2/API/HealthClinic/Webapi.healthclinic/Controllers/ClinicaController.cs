@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Webapi.healthclinic.Domains;
 using Webapi.healthclinic.Interface;
+using Webapi.healthclinic.Repository;
 
 namespace Webapi.healthclinic.Controllers
 {
@@ -10,15 +12,17 @@ namespace Webapi.healthclinic.Controllers
     [Produces("application/json")]
     public class ClinicaController : ControllerBase
     {
-        private IClinicaRepository _ClinicaRepository { get; set; }
+        private IClinicaRepository _ClinicaRepository;
 
         public ClinicaController()
         {
-            _ClinicaRepository = new Repository.ClinicaRepository();
+            _ClinicaRepository = new ClinicaRepository();
 
         }
 
+        [Authorize("Administrador")]
         [HttpPost]
+        
         public IActionResult Post(Clinica clinica)
         {
             try
@@ -49,6 +53,7 @@ namespace Webapi.healthclinic.Controllers
             }
         }
 
+        [Authorize("Administrador")]
         [HttpDelete]
         public IActionResult Delete(Guid id)
         {
@@ -64,8 +69,8 @@ namespace Webapi.healthclinic.Controllers
             }
         }
 
-
-        [HttpGet("{Id}")]
+        
+        [HttpGet("BuscaPorID/{id}")]
         public IActionResult GetbyId(Guid id)
         {
             try
@@ -82,6 +87,30 @@ namespace Webapi.healthclinic.Controllers
 
         }
 
+        /*[HttpGet("BuscaPorID/{id}")]
+        public IActionResult GetbyId(Guid id)
+        {
+            try
+            {
+                Clinica clinicaBuscada = _ClinicaRepository.BuscarPorId(id);
+                if (clinicaBuscada == null)
+                {
+                    return NotFound("Clinica buscada não encontrada");
+                }
+
+                return Ok(clinicaBuscada);  
+
+
+            }
+            catch (Exception e)
+            {
+
+               return BadRequest(e.Message);
+            }
+
+        }*/
+
+        [Authorize("Administrador")]
         [HttpPut("{id}")]
         public IActionResult Put(Guid id, Clinica clinica)
         {
