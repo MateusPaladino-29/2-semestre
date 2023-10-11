@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- Criar um formulário para receber o nome do usuário -->
+    <!-- e substituir por um nickname -->
+    <!-- ao clicar no botão o nickname deve ser exibido na tela -->
+
+    <form onsubmit="exibir()">
+        <label>Nome de usuário</label>
+        <input type="text" id="nome">
+
+        <label for="">Nickname</label>
+        <input type="text" id="nickname">
+
+        <button>Botaozinho</button>
+    </form>
+
+
+    <script>
+        function exibir() {
+            event.preventDefault();
+
+            let nick = document.getElementById("nome").value;
+            let nome = document.getElementById("nickname").value;
+            alert(`Nickname: ${nick.replace(nick , nome)}`);
+        }
+
+        // let nome = "Mateus Paladino";
+        // console.log(nome);
+        // console.log(nome[2]);
+        // console.log(nome.toUpperCase());
+        // let nomeLimpo = nome.trim();
+        // console.log(nome.trim());
+        // console.log(nomeLimpo.length);
+
+        // console.log(nome.substring(5, 10));
+        // console.log(`${nome.substr(0, 10)}...`);
+    </script>
+
+</body>
+
+</html>
