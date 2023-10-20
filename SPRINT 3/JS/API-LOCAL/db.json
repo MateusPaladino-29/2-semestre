@@ -1,0 +1,20 @@
+{
+    "imc": [
+        {
+            "nome": "luscas",
+            "altura": "1.69",
+            "peso": 90,
+            "situacao": "ta laskado",
+            "imc": 45.9,
+            "id": 2
+        },
+        {
+            "nome": "Mateus",
+            "altura": "1.80",
+            "peso": 78,
+            "situacao": "gostoso",
+            "imc": 24.78,
+            "id": 3
+        }
+    ]
+}
