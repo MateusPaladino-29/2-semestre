@@ -1,20 +1,39 @@
 {
-    "imc": [
-        {
-            "nome": "luscas",
-            "altura": "1.69",
-            "peso": 90,
-            "situacao": "ta laskado",
-            "imc": 45.9,
-            "id": 2
-        },
-        {
-            "nome": "Mateus",
-            "altura": "1.80",
-            "peso": 78,
-            "situacao": "gostoso",
-            "imc": 24.78,
-            "id": 3
-        }
-    ]
+  "Contatos": [
+    {
+      "cep": "03375000",
+      "endereco": "Rua Hemisfério",
+      "bairro": "Chácara Belenzinho",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "id": 1
+    },
+    {
+      "cep": "03375000",
+      "endereco": "Rua Hemisfério",
+      "bairro": "Chácara Belenzinho",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "id": 2
+    },
+    {
+      "cep": "03375000",
+      "endereco": "Rua Hemisfério",
+      "bairro": "Chácara Belenzinho",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "id": 3
+    },
+    {
+      "cep": "03375000",
+      "endereco": "Rua Hemisfério",
+      "bairro": "Chácara Belenzinho",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "nome": "Mateus Paladino",
+      "telefone": "(11) 97998-2005",
+      "casa": "510",
+      "id": 4
+    }
+  ]
 }

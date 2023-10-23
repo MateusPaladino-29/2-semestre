@@ -9,10 +9,9 @@
 </head>
 
 <body>
-    <form>
+    <form onsubmit="Cadastrar(event)">
         <label for="cep">CEP</label>
-        <input type="number" placeholder="digite o cep" id="cep" onblur="chamarApi()"  />
-
+        <input type="number" placeholder="digite o cep" id="cep" onblur="chamarApi()" autocomplete="off" />
         <br></br>
 
         <span id="not-found"></span>
@@ -34,23 +33,88 @@
         <label for="estado">Estado</label>
         <input type="text" placeholder=" ... " id="estado" />
         <br /><br />
+
+        <label for="Nome">Nome</label>
+        <input type="text" placeholder=" ... " id="nome" />
+        <br /><br />
+
+        <label for="Numero de Telefone">Numero de Telefone</label>
+        <input type="text" placeholder=" ... " id="telefone" />
+        <br /><br />
+
+        <label for="Numero da Casa">Numero da Casa</label>
+        <input type="text" placeholder=" ... " id="casa" />
+        <br /><br />
+
+        <button type="submit">Salvar Contato</button>
     </form>
 
     <script>
 
-        async function chamarApi() {
+        const urlLocal = "http://localhost:3000/Contatos"
+        async function Cadastrar(e) {
+            e.preventDefault();
+
             const cep = document.getElementById("cep").value;
-            const url = await fetch(`https://viacep.com.br/ws/${cep}/json/`)
-            const dados = await url.json();
+            const endereco = document.getElementById("endereco").value;
+            const cidade = document.getElementById("cidade").value;
+            const bairro = document.getElementById("bairro").value;
+            const estado = document.getElementById("estado").value;
+            const nome = document.getElementById("nome").value;
+            const telefone = document.getElementById("telefone").value;
+            const casa = document.getElementById("casa").value;
+
+
+            const objDados = { cep, endereco, bairro, cidade, estado, nome, telefone, casa }
+
+            try {
+                const promise = await fetch(urlLocal, {
+                    body: JSON.stringify(objDados),
+                    headers: { "Content-Type": "application/json" },
+                    method: "post"
+                });
+
+                const retorno = promise.json();
+                console.log(retorno);
+
+            } catch (error) {
+
+                alert("Deu ruim:" + error)
+            }
+
+        }
+
+
+
+
+        async function chamarApi() {
+            console.clear();
+            event.preventDefault();
+
+            const cep = document.getElementById("cep").value;
+            const url = `https://viacep.com.br/ws/${cep}/json/`
+
+
 
             try {
 
-                ExibeDados(dados)
-            }
+                const promise = await fetch(url);
+                const dados = await promise.json();
 
-            catch (error) {
+                document.getElementById("not-found").innerText = ""
+
+                ExibeDados(dados)
+
+
+
+            } catch (error) {
 
                 LimpaDados(dados)
+                alert("Deu ruim" + error)
+
+                document.getElementById("not-found").innerText = "Cep Invalido"
+
+
             };
 
             function ExibeDados(dados) {
@@ -59,18 +123,20 @@
                 document.getElementById("endereco").value = dados.logradouro;
                 document.getElementById("cidade").value = dados.localidade;
                 document.getElementById("estado").value = dados.uf;
-                document.getElementById("not-found").innerText = "";
+
 
                 console.log(dados);
             };
 
             function LimpaDados(dados) {
 
+                console.log(`Deu ruim na api`);
+
                 document.getElementById("bairro").value = "...";
-                document.getElementById("endereco").value = "...";
                 document.getElementById("cidade").value = "...";
+                document.getElementById("endereco").value = "...";
                 document.getElementById("estado").value = "...";
-                document.getElementById("not-found").innerText = "Cep Invalido"
+
             };
 
 
