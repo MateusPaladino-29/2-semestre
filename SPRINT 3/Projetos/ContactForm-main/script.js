@@ -1,20 +1,22 @@
 const urlLocal = "http://localhost:3000/Contatos"
+
 async function Cadastrar(e) {
     e.preventDefault();
 
-   const document.getElementById("bairro").value = dados.bairro;
-   const document.getElementById("cidade").value = dados.localidade;
-   const  document.getElementById("UF").value = dados.uf;
-   const document.getElementById("rua").value = dados.logradouro;
-   const document.getElementById("complemento").value = dados.complemento;
-   const document.getElementById("numero").value = dados.numero;
-   const  document.getElementById("nome").value = dados.nome;
-   const document.getElementById("sobrenome").value = dados.sobrenome;
-   const document.getElementById("email").value = dados.email;
-   const document.getElementById("pais").value = dados.;
-   const document.getElementById("ddd").value = dados.ddd;
-   const document.getElementById("telefone").value = dados.telefone;
-   const document.getElementById("anotacoes").value = dados.anotacoes
+    const cep = document.getElementById("cep").value;
+    const bairro = document.getElementById("bairro").value;
+    const cidade = document.getElementById("cidade").value;
+    const uf = document.getElementById("UF").value;
+    const rua = document.getElementById("rua").value;
+    const complemento = document.getElementById("complemento").value; 
+    const numero = document.getElementById("numero").value; 
+    const nome = document.getElementById("nome").value; 
+    const sobrenome = document.getElementById("sobrenome").value;
+    const email = document.getElementById("email").value;
+    const pais = document.getElementById("pais").value;
+    const ddd = document.getElementById("ddd").value; 
+    const telefone = document.getElementById("telefone").value;
+    const anotacoes = document.getElementById("anotacoes").value; 
 
     const objDados = { cep, bairro, cidade, UF, rua, complemento, numero, nome, sobrenome, email, pais, ddd, telefone, anotacoes }
 
