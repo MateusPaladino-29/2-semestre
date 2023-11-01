@@ -1,3 +1,21 @@
 {
-    "Contatos": []
+  "Contatos": [
+    {
+      "cep": "03375000",
+      "bairro": "Chácara Belenzinho",
+      "cidade": "São Paulo",
+      "uf": "SP",
+      "rua": "Rua Hemisfério",
+      "complemento": "",
+      "numero": "",
+      "nome": "",
+      "sobrenome": "",
+      "email": "",
+      "pais": "",
+      "ddd": "11",
+      "telefone": "",
+      "anotacoes": "",
+      "id": 1
+    }
+  ]
 }

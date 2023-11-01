@@ -1,4 +1,4 @@
-const urlLocal = "http://localhost:3000/Contatos"
+const url = "http://localhost:3000/Contatos"
 
 async function Cadastrar(e) {
     e.preventDefault();
@@ -18,15 +18,15 @@ async function Cadastrar(e) {
     const telefone = document.getElementById("telefone").value;
     const anotacoes = document.getElementById("anotacoes").value; 
 
-    const objDados = { cep, bairro, cidade, UF, rua, complemento, numero, nome, sobrenome, email, pais, ddd, telefone, anotacoes }
+    const objDados = { cep, bairro, cidade, uf, rua, complemento, numero, nome, sobrenome, email, pais, ddd, telefone, anotacoes }
 
     try {
-        const promise = await fetch(urlLocal, {
+        const promise = await fetch(url, {
             body: JSON.stringify(objDados),
             headers: { "Content-Type": "application/json" },
             method: "post"
         });
-        const retorno = promise.json();
+        const retorno = await promise.json();
         console.log(retorno);
 
     } catch (error) {
