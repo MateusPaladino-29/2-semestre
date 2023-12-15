@@ -1,9 +1,10 @@
 import React from "react";
 import comentaryIcon from "../../../assets/images/comentary-icon.svg";
 import trashDelete from "../../../assets/images/trash-delete.svg";
-// import { dateFormateDbToView } from "../../../Utils/stringFunctions";
+ import { dateFormateDbToView } from "../../../Utils/stringFunctions";
+ 
 import ToggleSwitch from "../../../components/Toggle/Toggle";
-
+import { useNavigate } from "react-router-dom";
 
 // importa a biblioteca de tootips ()
 import "react-tooltip/dist/react-tooltip.css";
@@ -11,17 +12,19 @@ import { Tooltip } from "react-tooltip";
 
 // import trashDelete from "../../../assets/images/trash-delete.svg";
 import "./TableEva.css";
+import DetalhesEvento from "../../DetalhesEventos/DetalhesEventos";
 
 const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
+  const navigate = useNavigate();
   return (
     <table className="tbal-data">
       <thead className="tbal-data__head">
         <tr className="tbal-data__head-row tbal-data__head-row--red-color">
           <th className="tbal-data__head-title tbal-data__head-title--big">
             Evento
-           </th>
+          </th>
           <th className="tbal-data__head-title tbal-data__head-title--big">
-            Descrição 
+            Descrição
           </th>
           <th className="tbal-data__head-title tbal-data__head-title--big">
             Data
@@ -38,7 +41,7 @@ const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
               <td className="tbal-data__data tbal-data__data--big">
                 {e.nomeEvento}
               </td>
-               {<td
+              {<td
                 className="tbal-data__data tbal-data__data--big tbal-data__data--handover"
                 data-tooltip-id="description-tooltip"
                 data-tooltip-content={e.descricao}
@@ -50,29 +53,29 @@ const Table = ({ dados, fnConnect = null, fnShowModal = null }) => {
                   className="custom-tootip"
                 />
               </td>}
-             
+
               <td className="tbal-data__data tbal-data__data--big tbal-data__btn-actions">
-                {new Date (e.dataEvento).toLocaleDateString()}
-                
+                {new Date(e.dataEvento).toLocaleDateString()}
+
               </td>
 
               <td className="tbal-data__data tbal-data__data--big tbal-data__btn-actions">
                 <img
                   className="tbal-data__icon"
-                  // idevento={e.idEvento}
+                  //idevento={e.idEvento}
                   src={comentaryIcon}
                   alt=""
-                  onClick={() =>{fnShowModal(e.idEvento)}}
+                  onClick={() => { fnShowModal(e.idEvento) }}
                 />
 
-                <ToggleSwitch toggleActive={e.situacao} manipulationFunction = {() => {
+                <ToggleSwitch toggleActive={e.situacao} manipulationFunction={() => {
                   fnConnect(
-                    e.idEvento, 
+                    e.idEvento,
                     e.situacao ? "unconnect" : "connect",
-                    e.situacao ? e.idPresencaEvento: null //parametro opcional
-                    
-                    )
-                }}/>
+                    e.situacao ? e.idPresencaEvento : null //parametro opcional
+
+                  )
+                }} />
               </td>
             </tr>
           );

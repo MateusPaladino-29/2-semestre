@@ -17,6 +17,7 @@ export const HomeResource = '/'
 
 export const myEventsResource = '/PresencasEvento/ListarMinhas'
 
+
 export const CommentaryResource = '/ComentariosEvento/BuscarPorIdUsuario'
 
 //Rota para o recurso Listar Presenças Evento

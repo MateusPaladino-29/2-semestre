@@ -27,7 +27,6 @@ const EventosAlunoPage = () => {
   const [tipoEvento, setTipoEvento] = useState(""); //código do tipo do Evento escolhido
   const [showSpinner, setShowSpinner] = useState(false);
   const [showModal, setShowModal] = useState(false);
-
   // recupera os dados globais do usuário
   const { userData, setUserData } = useContext(UserContext);
   const { comentario, setComentario } = useState("")
@@ -122,38 +121,41 @@ const EventosAlunoPage = () => {
   //   return "????";
   // }
 
-  const showHideModal = (idEvento) => {
+  const showHideModal = (IdEvento) => {
     setShowModal(showModal ? false : true);
-    setUserData({ ...userData, idEvento: idEvento })
+    setUserData({ ...userData, idEvento: IdEvento})
   };
 
   //ler o comentario
-  const loadMyCommentary = async (idEvento, idUsuario) => {
+  const loadMyCommentary = async (IdEvento) => {
 
-    const promise = await api.get(`${CommentaryResource}?idUsuario=${idUsuario}&idEvento=${idEvento}`)
-
+    const promise = await api.get(`${CommentaryResource}?IdUsuario=${userData.userId}&IdEvento=${IdEvento}`)
+  const data = promise.data;
+  console.log(data);
+console.log(`usuario${userData.userId}`);
+console.log(IdEvento);
     
-    console.log(promise.data.descricao);
+    // console.log(promise.data.Descricao);
 
-    setComentario(promise.data.descricao);
+    // setComentario(promise.data.Descricao);
   }
 
 
 
   //Post um comentario
-  const posMyCommentary = async (eventId, comentary__text, situacao) => {
-    // try {
-    //   const promise = await api.post(CommentaryResource, {
-    //     "Descrição": comentary__text,
-    //     "Exibe": situacao,
-    //     "IdEvento": eventId,
-    //   })
+  const posMyCommentary = async (IdEvento, comentary__text, Situacao) => {
+    try {
+      const promise = await api.post(CommentaryResource, {
+        "Descrição": comentary__text,
+        "Exibe": Situacao,
+        "IdEvento": IdEvento,
+      })
 
-    //   console.log(promise.data);
+      console.log(promise.data);
 
-    // } catch (error) {
+    } catch (error) {
 
-    // }
+    }
   }
 
 
